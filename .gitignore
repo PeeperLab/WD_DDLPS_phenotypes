@@ -1,0 +1,50 @@
+# This repository contains CODE ONLY. No data (raw, processed, patient-level or
+# intermediate results) may be committed.
+#
+# Whitelist approach: ignore everything, then allow only code and documentation.
+# If you add a new kind of code file (e.g. .py, .sh), add it to the list below.
+
+*
+!*/
+
+# Code
+!*.R
+!*.Rmd
+!*.py
+!*.sh
+
+# Documentation and environment
+!README.md
+!LICENSE
+!LICENSE.md
+!CITATION.cff
+!.gitignore
+!renv.lock
+!*.Rproj
+
+# renv infrastructure (so others can run renv::restore())
+!.Rprofile
+!renv/activate.R
+!renv/settings.json
+
+# Never commit data/result folders, even if they contain code-like files
+**/Inputs/
+**/Outputs/
+**/WGS_input/
+**/WGS_results/
+**/meta/
+**/data/
+
+# R / OS clutter (already excluded by the whitelist; listed for clarity)
+.Rhistory
+.RData
+.Rproj.user/
+.DS_Store
+
+# Local helpers and verification results (not part of the repository)
+run_all.R
+compare_outputs.R
+setup_renv_environment.R
+verification_renv/
+omnipathr-log/
+**/omnipathr-log/
