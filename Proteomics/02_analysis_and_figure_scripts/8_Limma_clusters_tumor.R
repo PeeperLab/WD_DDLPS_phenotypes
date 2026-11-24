@@ -27,11 +27,13 @@ proteomic_data <- t(proteomic_data)
 
 clusters <- read.csv("Outputs/Files/Consensus_clustering/Consensus_clustering.csv", row.names = 1)
 
-# Create a dataframe from the DD consensus clusters
+# Create a dataframe from the DD/WD consensus clusters,
+# matching cluster labels to the samples (columns) of the protein matrix by sample ID
 cluster_df <- data.frame(
-  Cluster = clusters$consensus_clusters,  # Values from your vector
-  row.names = rownames(proteomic_metadata)  # Set rownames
+  Cluster = clusters$consensus_clusters[match(colnames(proteomic_data), rownames(clusters))],
+  row.names = colnames(proteomic_data)
 )
+stopifnot(!anyNA(cluster_df$Cluster))
 
 # Initialize lists to store results
 ranked_gene_lists <- list()

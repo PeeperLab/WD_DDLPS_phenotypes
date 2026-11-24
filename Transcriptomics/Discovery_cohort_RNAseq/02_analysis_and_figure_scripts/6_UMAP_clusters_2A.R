@@ -44,9 +44,9 @@ umap_data$dataset <- metadata$dataset
 umap_data$sampleID <- metadata$sampleID
 umap_data$dataset <- as.factor(umap_data$dataset)
 
-clusters$sampleID <- rownames(clusters)
-umap_data$sampleID <- rownames(umap_data)
-umap_data$consensus_clusters <- clusters$consensus_clusters
+# match cluster labels to the UMAP samples by sample ID
+umap_data$consensus_clusters <- clusters$consensus_clusters[match(umap_data$sampleID, clusters$sampleID)]
+stopifnot(!anyNA(umap_data$consensus_clusters))
 
 umap_data$consensus_clusters <- as.factor(umap_data$consensus_clusters)
 

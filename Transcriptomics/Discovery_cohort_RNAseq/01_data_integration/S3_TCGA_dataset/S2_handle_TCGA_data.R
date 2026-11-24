@@ -48,7 +48,7 @@ count_data_t <- count_data_t %>%
 # check if tehre are samples only in filtered_lps_data1.
 diff1 <- setdiff(filtered_lps_data$sampleID, count_data_t$sampleid_prefix)
 
-filtered_lps_data <- filtered_lps_data[filtered_lps_data$sampleID != diff1, ]
+filtered_lps_data <- filtered_lps_data[!filtered_lps_data$sampleID %in% diff1, ]
 
 
 # combine these two datasets by  bcr_sample_barcode == sampleid_prefix 
